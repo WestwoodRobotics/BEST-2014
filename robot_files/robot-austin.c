@@ -15,40 +15,40 @@
 float slow, ud6, ud7, lr7;
 
 task moveToHeight(){
-	while(true){
-		motor[armUDMotor] = -127;
-		if(SensorValue[heightSwitch] != 0.0){
-			motor[armUDMotor] = 0;
-			break;
-		}
-	}
+    while(true){
+        motor[armUDMotor] = -127;
+        if(SensorValue[heightSwitch] != 0.0){
+            motor[armUDMotor] = 0;
+            break;
+        }
+    }
 }
 
 task main(){
-	while(true){
+    while(true){
 
-		slow = 1.0 - (vexRT[Btn5U] * 0.8);
-		motor[leftMotor] = DEADBAND(vexRT[Ch3]) * slow;
-		motor[rightMotor] = DEADBAND(vexRT[Ch2]) * slow;
+        slow = 1.0 - (vexRT[Btn5U] * 0.8);
+        motor[leftMotor] = DEADBAND(vexRT[Ch3]) * slow;
+        motor[rightMotor] = DEADBAND(vexRT[Ch2]) * slow;
 
-		ud6 = vexRT[Btn6U] - vexRT[Btn6D];
+        ud6 = vexRT[Btn6U] - vexRT[Btn6D];
 
-		if(ud6 != 0.0){
-			motor[leftMotor] = ud6 * 128 * slow;
-			motor[rightMotor] = ud6 * 128 * slow;
-		}
+        if(ud6 != 0.0){
+            motor[leftMotor] = ud6 * 128 * slow;
+            motor[rightMotor] = ud6 * 128 * slow;
+        }
 
-		motor[armLRMotor] = (vexRT[Btn8L] - vexRT[Btn8R]) * BTN_MOTOR_SPEED;
-		motor[armUDMotor] = (vexRT[Btn8U] - vexRT[Btn8D]) * BTN_MOTOR_SPEED;
+        motor[armLRMotor] = (vexRT[Btn8L] - vexRT[Btn8R]) * BTN_MOTOR_SPEED;
+        motor[armUDMotor] = (vexRT[Btn8U] - vexRT[Btn8D]) * BTN_MOTOR_SPEED;
 
-		ud7 = vexRT[Btn7U] - vexRT[Btn7D];
-		lr7 = vexRT[Btn7R] - vexRT[Btn7L];
+        ud7 = vexRT[Btn7U] - vexRT[Btn7D];
+        lr7 = vexRT[Btn7R] - vexRT[Btn7L];
 
-		if(ud7 != 0.0) motor[servoClamp] = ud7 * 127;
+        if(ud7 != 0.0) motor[servoClamp] = ud7 * 127;
 
-		if(lr7 != 0.0) motor[servoClaw] = lr7 * 127;
+        if(lr7 != 0.0) motor[servoClaw] = lr7 * 127;
 
-		if(vexRT[Btn5D]) startTask(moveToHeight, kDefaultTaskPriority);
+        if(vexRT[Btn5D]) startTask(moveToHeight, kDefaultTaskPriority);
 
-	}
+    }
 }
