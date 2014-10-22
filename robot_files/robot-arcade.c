@@ -33,7 +33,7 @@ task main(){
 
         //If we are pushing our special button
         //Set the arm motor to move to the pre-defined position
-        if(vexRT[JOY_BTN_MOVE_POINT]) startTask(moveToHeight, kDefaultTaskPriority);
+        if(vexRT[JOY_BTN_MOVE_POINT]) startTask(task_move_to_height, kDefaultTaskPriority);
 
     }
 }

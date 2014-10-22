@@ -1,5 +1,3 @@
-#include "config.h"
-
 float ud7, lr7;
 
 /*

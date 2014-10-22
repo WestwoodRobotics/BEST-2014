@@ -1,5 +1,3 @@
-#include "config.h"
-
 float move, rot;
 float ud6;
 

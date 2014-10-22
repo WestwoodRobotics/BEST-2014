@@ -12,19 +12,27 @@
 #include "tasks.c"
 #include "actions.c"
 
+bool isTogglePressed = false;
+
 /*
  * main
  * main function of the robot
  */
 task main(){
+    startTask(task_run_drivemode, kHighPriority);
     while(true){
 
         //Check if we should drive with slow sleeds.
         slow = 1.0 - (vexRT[JOY_BTN_SLOW] * SLOW_SPEED_MULTIPLIER);
 
-        //Call to the drive methods
-        tankDrive();
-        moveBtns();
+        if(vexRT[JOY_BTN_TOGGLE_DRIVEMODE]){
+            if(!isTogglePressed){
+                isTogglePressed = true;
+                currentDrivemode = DRIVE_MAX - currentDrivemode;
+            }
+        }else{
+            isTogglePressed = false;
+        }
 
         //Call the Arm control method
         runArm();

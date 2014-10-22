@@ -23,6 +23,8 @@
 
 #define JOY_BTN_MOVE_POINT Btn5D
 
+#define JOY_BTN_TOGGLE_DRIVEMODE Btn6U
+
 #define JOY_BTN_FORWARD Btn6U
 
 #define JOY_BTN_REVERSE Btn6D
@@ -44,5 +46,13 @@
 #define JOY_BTN_ARM_LEFT Btn8L
 
 float slow;
+
+typedef enum TDriveMode {
+    DRIVE_ARCADE = 1,
+    DRIVE_TANK = 2,
+    DRIVE_MAX = 3
+} TDriveMode;
+
+TDriveMode currentDrivemode = DRIVE_ARCADE;
 
 #endif
