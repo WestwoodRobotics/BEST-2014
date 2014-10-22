@@ -41,6 +41,6 @@
 
 #define JOY_BTN_ARM_LEFT Btn8L
 
-float slow, ud6, ud7, lr7;
+float slow;
 
 #endif

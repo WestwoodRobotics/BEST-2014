@@ -1,6 +1,7 @@
 #include "defs.h"
 
 float move, rot;
+float ud6;
 
 /*
  * tank

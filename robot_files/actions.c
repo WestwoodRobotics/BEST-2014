@@ -1,5 +1,7 @@
 #include "defs.h"
 
+float ud7, lr7;
+
 /*
  * runArm
  * control the arms
