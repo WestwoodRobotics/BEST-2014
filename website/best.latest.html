@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<title>BEST 2014</title>
+		<script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="assets/js/base.js"></script>
+		<script type="text/javascript" src="assets/reveal/js/reveal.js"></script>
+		<script type="text/javascript" src="assets/gallery/gallery.js"></script>
+		<link rel="stylesheet" type="text/css" href="assets/reveal/css/reveal.css" />
+		<link rel="stylesheet" type="text/css" href="assets/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="assets/reveal/css/theme/default.css" id="theme" />
+	</head>
+	<body>
+		<header>
+			<nav class="navigation">
+				<ul>
+					<li><a href="#/" class="first">Home</a></li>
+					<li><a href="#/competition">Competition</a></li>
+					<li><a href="#/engineering">Engineering</a></li>
+					<li><a href="#/robot">Robot</a></li>
+					<li><a href="#/team">The Team</a></li>
+					<li><a href="#/members">Memebers</a></li>
+					<li><a href="#/gallery" class="gallery">Gallery</a></li>
+					<li><a href="#/credits" class="credits">Credits</a></li>
+					<li><a href="#/sitemap" class="map bright">SiteMap</a></li>
+					<li class="time last"><p></p><a>It is </a><a class="currentTime"></a></li>
+				</ul>
+			</nav>
+		</header>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="assets/img/background-1.png" data-background-transition="concave">
+					<h1>
+						Welcome<br/>To The Future<br/>Of <strong>ENERGY</strong>
+					</h1>
+				</section>
+				<section id="competition" data-background="assets/img/background-2.png" data-background-transition="concave">
+					<h1>
+						Competition
+					</h1>
+				</section>
+				<section id="engineering"></section>
+				<section id="robot"></section>
+				<section id="team"></section>
+				<section id="members"></section>
+				<section id="last">
+					<iframe src="gallery.html">
+						
+					</iframe>
+				</section>
+			</div>
+		</div>
+		<aside class="arrows">
+			<div class="arrow-left controller">
+				<img src="assets/img/arrow-left.png" id="arrow_left">
+			</div>
+			<div class="arrow-right controller">
+				<img src="assets/img/arrow-right.png" id="arrow_right">
+			</div>
+		</aside>
+		<footer>
+			<center>&copy; Westwood Robotics 2014</center>
+		</footer>
+		<script type="text/javascript">
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				history: false,
+				overview: false,
+				transition:"default",
+				center: true,
+				theme: "default",
+				keyboard:false
+				//parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				//parallaxBackgroundSize: '2100px 900px',
+			});		
+		</script>
+	</body>
+</html>
