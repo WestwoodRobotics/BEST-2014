@@ -1,11 +1,13 @@
-#ifndef H_DEFS
-#define H_DEFS
+#ifndef H_CONFIG
+#define H_CONFIG
 
 #define DEADBAND_THRESHOLD 10.0
 
 #define DEADBAND(x)((abs(x) >= DEADBAND_THRESHOLD) ? x : 0.0)
 
 #define BTN_MOTOR_SPEED 127
+
+#define BTN_MOVE_SPEED 128
 
 #define SLOW_SPEED_MULTIPLIER 0.65
 

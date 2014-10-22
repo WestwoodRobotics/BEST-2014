@@ -7,7 +7,7 @@
 #pragma config(Motor,  port8,           armLRMotor,    tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port9,           rightMotor,    tmotorServoContinuousRotation, openLoop, reversed, driveRight)
 
-#include "defs.h"
+#include "config.h"
 #include "drive.c"
 #include "tasks.c"
 #include "actions.c"

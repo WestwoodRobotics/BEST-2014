@@ -1,4 +1,4 @@
-#include "defs.h"
+#include "config.h"
 
 float move, rot;
 float ud6;
@@ -32,7 +32,7 @@ void moveBtns(){
     ud6 = vexRT[JOY_BTN_FORWARD] - vexRT[JOY_BTN_REVERSE];
 
     if(ud6 != 0.0){
-        motor[leftMotor] = ud6 * 128 * slow;
-        motor[rightMotor] = ud6 * 128 * slow;
+        motor[leftMotor] = ud6 * BTN_MOVE_SPEED * slow;
+        motor[rightMotor] = ud6 * BTN_MOVE_SPEED * slow;
     }
 }
