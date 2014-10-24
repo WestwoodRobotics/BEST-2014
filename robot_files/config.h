@@ -55,4 +55,6 @@ typedef enum TDriveMode {
 
 TDriveMode currentDrivemode = DRIVE_ARCADE;
 
+bool moveHeightTaskRunning = false;
+
 #endif

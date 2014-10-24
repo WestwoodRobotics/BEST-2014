@@ -3,13 +3,16 @@
  * move the arm to the needed height
  */
 task task_move_to_height(){
-    while(true){
+    moveHeightTaskRunning = true;
+    bool runTaskRun = true;
+    while(runTaskRun){
         motor[armUDMotor] = -127;
         if(SensorValue[heightSwitch] != 0.0){
             motor[armUDMotor] = 0;
-            break;
+            runTaskRun = false;
         }
     }
+    moveHeightTaskRunning = false;
 }
 
 task task_run_drivemode(){

@@ -14,26 +14,13 @@
 
 bool isTogglePressed = false;
 
-void runDrivemode(){
-    switch (currentDrivemode) {
-    case DRIVE_ARCADE:
-        arcadeDrive();
-        break;
-    case DRIVE_TANK:
-        tankDrive();
-        break;
-    default:
-        tankDrive();
-    }
-}
-
 /*
  * main
  * main function of the robot
  */
 task main(){
     while(true){
-
+        startTask(task_run_drivemode);
         //Check if we should drive with slow sleeds.
         slow = 1.0 - (vexRT[JOY_BTN_SLOW] * SLOW_SPEED_MULTIPLIER);
 
@@ -46,8 +33,6 @@ task main(){
             isTogglePressed = false;
         }
 
-        runDrivemode();
-
         //Call the Arm control method
         runArm();
         //Call the Calw control method
@@ -55,7 +40,7 @@ task main(){
 
         //If we are pushing our special button
         //Set the arm motor to move to the pre-defined position
-        //if(vexRT[JOY_BTN_MOVE_POINT]) startTask(task_move_to_height, kDefaultTaskPriority);
+        if(vexRT[JOY_BTN_MOVE_POINT] && !moveHeightTaskRunning) startTask(task_move_to_height);
 
     }
 }
