@@ -4,7 +4,7 @@
 #pragma config(Motor,  port3,           armUDMotor,    tmotorServoContinuousRotation, openLoop, reversed)
 #pragma config(Motor,  port5,           servoClamp,    tmotorServoStandard, openLoop)
 #pragma config(Motor,  port6,           servoClaw,     tmotorServoStandard, openLoop)
-#pragma config(Motor,  port8,           armLRMotor,    tmotorServoContinuousRotation, openLoop)
+#pragma config(Motor,  port8,           armLRMotor,    tmotorServoContinuousRotation, openLoop, reversed)
 #pragma config(Motor,  port9,           rightMotor,    tmotorServoContinuousRotation, openLoop, reversed, driveRight)
 
 #include "config.h"
@@ -40,7 +40,7 @@ task main(){
 
         //If we are pushing our special button
         //Set the arm motor to move to the pre-defined position
-        if(vexRT[JOY_BTN_MOVE_POINT] && !moveHeightTaskRunning) startTask(task_move_to_height);
+        //if(vexRT[JOY_BTN_MOVE_POINT] && !moveHeightTaskRunning) startTask(task_move_to_height);
 
     }
 }
