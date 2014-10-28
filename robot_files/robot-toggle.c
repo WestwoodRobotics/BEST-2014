@@ -12,26 +12,19 @@
 #include "tasks.c"
 #include "actions.c"
 
-bool isTogglePressed = false;
-
 /*
  * main
  * main function of the robot
  */
 task main(){
+    startTask(task_run_drivemode);
     while(true){
-        startTask(task_run_drivemode);
+        
         //Check if we should drive with slow sleeds.
         slow = 1.0 - (vexRT[JOY_BTN_SLOW] * SLOW_SPEED_MULTIPLIER);
 
-        if(vexRT[JOY_BTN_TOGGLE_DRIVEMODE]){
-            if(!isTogglePressed){
-                isTogglePressed = true;
-                currentDrivemode = DRIVE_MAX - currentDrivemode;
-            }
-        }else{
-            isTogglePressed = false;
-        }
+        //Check if we should switch the drivemode
+        checkSwitchDrivemode();
 
         //Call the Arm control method
         runArm();
@@ -40,7 +33,8 @@ task main(){
 
         //If we are pushing our special button
         //Set the arm motor to move to the pre-defined position
-        //if(vexRT[JOY_BTN_MOVE_POINT] && !moveHeightTaskRunning) startTask(task_move_to_height);
+        if(vexRT[JOY_BTN_MOVE_POINT] && !moveHeightTaskRunning)
+            startTask(task_move_to_height);
 
     }
 }

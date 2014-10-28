@@ -1,5 +1,22 @@
 float ud7, lr7;
 
+bool isTogglePressed = false;
+
+/*
+ * run drive switch
+ * should we switch the drivemode?
+ */
+void checkSwitchDrivemode(){
+    if(vexRT[JOY_BTN_TOGGLE_DRIVEMODE]){
+        if(!isTogglePressed){
+            isTogglePressed = true;
+            currentDrivemode = DRIVE_MAX - currentDrivemode;
+        }
+    }else{
+        isTogglePressed = false;
+    }
+}
+
 /*
  * runArm
  * control the arms

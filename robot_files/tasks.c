@@ -30,15 +30,3 @@ task task_run_drivemode(){
         }
     }
 }
-
-task task_drive_arcade(){
-    while(true){
-        arcadeDrive();
-    }
-}
-
-task task_drive_tank(){
-    while(true){
-        tankDrive();
-    }
-}
