@@ -7,7 +7,7 @@ task task_move_to_height(){
     bool runTaskRun = true;
     while(runTaskRun){
         motor[armUDMotor] = -127;
-        if(SensorValue[heightSwitch] != 0.0){
+        if(SensorValue[bottomHeightSwitch] == 0.0){
             motor[armUDMotor] = 0;
             runTaskRun = false;
         }

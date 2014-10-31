@@ -1,5 +1,3 @@
-float ud7, lr7;
-
 bool isTogglePressed = false;
 
 /*
@@ -22,8 +20,11 @@ void checkSwitchDrivemode(){
  * control the arms
  */
 void runArm(){
-    motor[armLRMotor] = (vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT]) * BTN_MOTOR_SPEED;
-    motor[armUDMotor] = (vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN]) * BTN_MOTOR_SPEED;
+		motor[armLRMotor] = (vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT]) * BTN_MOTOR_SPEED;
+		float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
+    if(!SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
+    //if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
+    motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
 }
 
 /*
@@ -31,8 +32,9 @@ void runArm(){
  * control the claw
  */
 void runClaw(){
+	  float ud7, lr7;
     ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
     lr7 = vexRT[JOY_BTN_CLAW_OPEN] - vexRT[JOY_BTN_CLAW_CLOSE];
-    if(ud7 != 0.0) motor[servoClamp] = ud7 * 127;
+    if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
     if(lr7 != 0.0) motor[servoClaw] = lr7 * 127;
 }
