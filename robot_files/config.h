@@ -17,8 +17,7 @@
 #define JOY_BTN_SLOW Btn5U
 #define JOY_BTN_MOVE_POINT Btn5D
 #define JOY_BTN_TOGGLE_DRIVEMODE Btn6U
-#define JOY_BTN_FORWARD Btn6U
-#define JOY_BTN_REVERSE Btn6D
+#define JOY_BTN_TOGGLE_FLAGMODE Btn6D
 #define JOY_BTN_CLAMP_OPEN Btn7U
 #define JOY_BTN_CLAMP_CLOSE Btn7D
 #define JOY_BTN_CLAW_OPEN Btn7R
@@ -31,12 +30,30 @@
 float slow;
 
 typedef enum TDriveMode {
+	DRIVE_NONE = 0,
     DRIVE_ARCADE = 1,
     DRIVE_TANK = 2,
     DRIVE_MAX = 3
 } TDriveMode;
 
+typedef enum TFlagMode {
+	FLAG_NONE = 0,
+	FLAG_CHICKEN = 1,
+	FLAG_BLADE = 2,
+	FLAG_MAX = 3
+} TFlagMode;
+
+float flagModeServo[FLAG_MAX];
+flagModeServo[FLAG_CHICKEN] = 0;
+flagModeServo[FLAG_BLADE] = 110;
+
+float flagDriveServo[DRIVE_MAX];
+flagDriveServo[DRIVE_ARCADE] = 0;
+flagDriveServo[DRIVE_TANK] = 110;
+
 TDriveMode currentDrivemode = DRIVE_ARCADE;
+
+TFlagMode currentFlagMode = FLAG_CHICKEN;
 
 bool moveHeightTaskRunning = false;
 
