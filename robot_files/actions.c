@@ -55,9 +55,17 @@ void runClamp(){
     if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
 }
 
+/*
+ * runModeTask
+ * run the currently selected mode task.
+ */
+void runModeTask(){
+    return;
+}
+
 bool isModeRunPressed = false;
 void checkRunModeTask(){
-    if(vexRT[JOY_BTN_RUN_MODE]){
+    if(vexRT[JOY_BTN_MODE_RUN]){
         if(!isModeRunPressed){
             isModeRunPressed = true;
             runModeTask();
@@ -65,14 +73,6 @@ void checkRunModeTask(){
     }else{
         isModeRunPressed = false;
     }
-}
-
-/*
- * runModeTask
- * run the currently selected mode task.
- */
-void runModeTask(){
-    return;
 }
 
 /*
