@@ -10,6 +10,15 @@ task task_run_drivemode(){
             break;
         default:
             tankDrive();
+            break;
         }
     }
+}
+
+task task_flag_mode_chicken(){
+
+}
+
+task task_flag_mode_blade(){
+    
 }
