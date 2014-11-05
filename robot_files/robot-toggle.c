@@ -35,5 +35,6 @@ task main(){
         //Call the Calw control method
         runClamp();
 
+        checkRunModeTask();
     }
 }

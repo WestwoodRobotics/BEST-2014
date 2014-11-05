@@ -55,6 +55,30 @@ void runClamp(){
     if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
 }
 
+bool isModeRunPressed = false;
+void checkRunModeTask(){
+    if(vexRT[JOY_BTN_RUN_MODE]){
+        if(!isModeRunPressed){
+            isModeRunPressed = true;
+            runModeTask();
+        }
+    }else{
+        isModeRunPressed = false;
+    }
+}
+
+/*
+ * runModeTask
+ * run the currently selected mode task.
+ */
+void runModeTask(){
+    return;
+}
+
+/*
+ * initFlags
+ * set the flags to their default position on startup
+ */
 void initFlags(){
     motor[servoFlagDrive] = flagDriveServo[currentDrivemode];
     motor[servoFlagMode] = flagModeServo[currentFlagMode];
