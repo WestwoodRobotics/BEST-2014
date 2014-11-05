@@ -1,6 +1,5 @@
-bool isDriveTogglePressed = false;
-bool isFlagTogglePressed = false;
 
+bool isDriveTogglePressed = false;
 /*
  * run drive switch
  * should we switch the drivemode?
@@ -17,6 +16,7 @@ void checkSwitchDrivemode(){
     }
 }
 
+bool isFlagTogglePressed = false;
 /*
  * run flag switch
  * should we switch the flag mode?

@@ -36,6 +36,8 @@ typedef enum TDriveMode {
     DRIVE_MAX = 3
 } TDriveMode;
 
+TDriveMode currentDrivemode = DRIVE_ARCADE;
+
 typedef enum TFlagMode {
     FLAG_NONE = 0,
     FLAG_CHICKEN = 1,
@@ -46,7 +48,6 @@ typedef enum TFlagMode {
 float flagModeServo[FLAG_MAX] = {0, 50, 100};
 float flagDriveServo[DRIVE_MAX] = {0, 50, 110};
 
-TDriveMode currentDrivemode = DRIVE_ARCADE;
 
 TFlagMode currentFlagMode = FLAG_CHICKEN;
 
