@@ -22,7 +22,7 @@ void checkSwitchDrivemode(){
 void runArm(){
 		motor[armLRMotor] = (vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT]) * BTN_MOTOR_SPEED;
 		float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
-    if(!SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
+    if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
     //if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
     motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
 }
