@@ -27,34 +27,27 @@
 #define JOY_BTN_ARM_RIGHT Btn8R
 #define JOY_BTN_ARM_LEFT Btn8L
 
-float slow;
+float slow_multiplier;
 
 typedef enum TDriveMode {
-	DRIVE_NONE = 0,
+    DRIVE_NONE = 0,
     DRIVE_ARCADE = 1,
     DRIVE_TANK = 2,
     DRIVE_MAX = 3
 } TDriveMode;
 
 typedef enum TFlagMode {
-	FLAG_NONE = 0,
-	FLAG_CHICKEN = 1,
-	FLAG_BLADE = 2,
-	FLAG_MAX = 3
+    FLAG_NONE = 0,
+    FLAG_CHICKEN = 1,
+    FLAG_BLADE = 2,
+    FLAG_MAX = 3
 } TFlagMode;
 
-float flagModeServo[FLAG_MAX];
-flagModeServo[FLAG_CHICKEN] = 0;
-flagModeServo[FLAG_BLADE] = 110;
-
-float flagDriveServo[DRIVE_MAX];
-flagDriveServo[DRIVE_ARCADE] = 0;
-flagDriveServo[DRIVE_TANK] = 110;
+float flagModeServo[FLAG_MAX] = {0, 50, 100};
+float flagDriveServo[DRIVE_MAX] = {0, 50, 110};
 
 TDriveMode currentDrivemode = DRIVE_ARCADE;
 
 TFlagMode currentFlagMode = FLAG_CHICKEN;
-
-bool moveHeightTaskRunning = false;
 
 #endif

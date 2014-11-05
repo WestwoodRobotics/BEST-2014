@@ -50,13 +50,12 @@ void runArm(){
  * control the claw
  */
 void runClamp(){
-    float ud7, lr7;
+    float ud7;
     ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
-    //lr7 = vexRT[JOY_BTN_CLAW_OPEN] - vexRT[JOY_BTN_CLAW_CLOSE];
     if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
-    //if(lr7 != 0.0) motor[servoClaw] = lr7 * 127;
 }
 
-void runFlags(){
-
+void initFlags(){
+    motor[servoFlagDrive] = flagDriveServo[currentDrivemode];
+    motor[servoFlagMode] = flagModeServo[currentFlagMode];
 }
