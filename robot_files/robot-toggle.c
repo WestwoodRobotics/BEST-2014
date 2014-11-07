@@ -1,5 +1,7 @@
 #pragma config(Sensor, dgtl1,  bottomHeightSwitch,   sensorTouch)
-#pragma config(Sensor, dgtl2,  clampHitSwitch,       sensorTouch)
+#pragma config(Sensor, dgtl2,  leftArmSwitch,   sensorTouch)
+#pragma config(Sensor, dgtl3,  rightArmSwitch,   sensorTouch)
+#pragma config(Sensor, dgtl4,  clampHitSwitch,       sensorTouch)
 #pragma config(Motor,  port2,           leftMotor,       tmotorServoContinuousRotation, openLoop, driveLeft)
 #pragma config(Motor,  port3,           armUDMotor,      tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port4,           servoFlagDrive,  tmotorServoStandard, openLoop)
