@@ -59,8 +59,15 @@ void runClamp(){
     if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
 }
 
+void runHitch(){
+    float lr7;
+    lr7 = vexRT[JOY_BTN_HITCH_UP] - vexRT[JOY_BTN_HITCH_DOWN];
+    if(lr7 != 0.0) motor[servoHitch] = lr7 * 128;
+}
+
 void cancelFlagTasks(){
-    
+    stopTask(task_flag_mode_chicken);
+    stopTask(task_flag_mode_blade);
 }
 
 /*
@@ -68,12 +75,13 @@ void cancelFlagTasks(){
  * run the currently selected mode task.
  */
 void runModeTask(){
+    cancelFlagTasks();
     switch (currentDrivemode) {
     case FLAG_CHICKEN:
-        
+        startTask(task_flag_mode_chicken);
         break;
     case FLAG_BLADE:
-        
+        startTask(task_flag_mode_blade);
         break;
     default:
         
@@ -100,4 +108,12 @@ void checkRunModeTask(){
 void initFlags(){
     motor[servoFlagDrive] = flagDriveServo[currentDrivemode];
     motor[servoFlagMode] = flagModeServo[currentFlagMode];
+}
+
+void initClamp(){
+    motor[servoClamp] = 110;
+}
+
+void initHitch(){
+    motor[servoHitch] = -128;
 }

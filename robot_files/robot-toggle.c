@@ -1,11 +1,12 @@
 #pragma config(Sensor, dgtl1,  bottomHeightSwitch,   sensorTouch)
-#pragma config(Sensor, dgtl2,  leftArmSwitch,   sensorTouch)
-#pragma config(Sensor, dgtl3,  rightArmSwitch,   sensorTouch)
+#pragma config(Sensor, dgtl2,  leftArmSwitch,        sensorTouch)
+#pragma config(Sensor, dgtl3,  rightArmSwitch,       sensorTouch)
 #pragma config(Sensor, dgtl4,  clampHitSwitch,       sensorTouch)
 #pragma config(Motor,  port2,           leftMotor,       tmotorServoContinuousRotation, openLoop, driveLeft)
 #pragma config(Motor,  port3,           armUDMotor,      tmotorServoContinuousRotation, openLoop)
 #pragma config(Motor,  port4,           servoFlagDrive,  tmotorServoStandard, openLoop)
 #pragma config(Motor,  port5,           servoClamp,      tmotorServoStandard, openLoop)
+#pragma config(Motor,  port6,           servoHitch,      tmotorServoStandard, openLoop)
 #pragma config(Motor,  port7,           servoFlagMode,   tmotorServoStandard, openLoop)
 #pragma config(Motor,  port8,           armLRMotor,      tmotorServoContinuousRotation, openLoop, reversed)
 #pragma config(Motor,  port9,           rightMotor,      tmotorServoContinuousRotation, openLoop, driveRight)
@@ -21,6 +22,8 @@
  */
 task main(){
     initFlags();
+    initClamp();
+    initHitch();
     startTask(task_run_drivemode);
     while(true){
 
@@ -36,6 +39,8 @@ task main(){
         runArm();
         //Call the Calw control method
         runClamp();
+
+        runHitch();
 
         checkRunModeTask();
     }
