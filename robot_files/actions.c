@@ -1,5 +1,5 @@
-
 bool isDriveTogglePressed = false;
+
 /*
  * run drive switch
  * should we switch the drivemode?
@@ -42,7 +42,7 @@ void runArm(){
     if(SensorValue[leftArmSwitch] && lr8 > 0) lr8 = 0;
     if(SensorValue[rightArmSwitch] && lr8 < 0) lr8 = 0;
     motor[armLRMotor] = lr8 * BTN_MOTOR_SPEED;
-    
+
     float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
     if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
     //if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
@@ -56,7 +56,7 @@ void runArm(){
 void runClamp(){
     float ud7;
     ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
-    if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
+    if(ud7 != 0.0) motor[servoClamp] = ud7 * CLAMP_OPEN_DISTANCE;
 }
 
 void runHitch(){
@@ -84,7 +84,7 @@ void runModeTask(){
         startTask(task_flag_mode_blade);
         break;
     default:
-        
+
         break;
     }
 }
@@ -111,9 +111,30 @@ void initFlags(){
 }
 
 void initClamp(){
-    motor[servoClamp] = 110;
+    motor[servoClamp] = CLAMP_OPEN_DISTANCE;
 }
 
 void initHitch(){
     motor[servoHitch] = -128;
+}
+
+/*
+ * letGo
+ * Automatically runs through the process of letting go of an object
+ * Assumes that the arm is center and the object is touching/right above the ground
+ */
+void letGo(){
+		motor[servoClamp] = CLAMP_OPEN_DISTANCE;
+
+		motor[armLRMotor] = -1 * BTN_MOTOR_SPEED;
+		wait1Msec(1000);
+		motor[armLRMotor] = 0;
+
+		motor[armUDMotor] = BTN_MOTOR_SPEED;
+		wait1Msec(1000);
+		motor[armUDMotor] = 0;
+
+		motor[armLRMotor] = BTN_MOTOR_SPEED;
+		wait1Msec(1000);
+		motor[armLRMotor] = 0;
 }
