@@ -50,6 +50,7 @@ typedef enum TFlagMode {
 float flagModeServo[FLAG_MAX] = {0, 50, 100};
 float flagDriveServo[DRIVE_MAX] = {0, 50, 110};
 
+bool taskRunning = false;
 
 TFlagMode currentFlagMode = FLAG_CHICKEN;
 
