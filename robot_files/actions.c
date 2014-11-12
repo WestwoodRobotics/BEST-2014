@@ -39,16 +39,16 @@ void checkSwitchFlagMode(){
  */
 void runArm(){
 	if(!taskRunning){
-    float lr8 = vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT];
-    if(SensorValue[leftArmSwitch] && lr8 > 0) lr8 = 0;
-    if(SensorValue[rightArmSwitch] && lr8 < 0) lr8 = 0;
-    motor[armLRMotor] = lr8 * BTN_MOTOR_SPEED;
+	    float lr8 = vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT];
+	    if(SensorValue[leftArmSwitch] && lr8 > 0) lr8 = 0;
+	    if(SensorValue[rightArmSwitch] && lr8 < 0) lr8 = 0;
+	    motor[armLRMotor] = lr8 * BTN_MOTOR_SPEED;
 
-    float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
-    if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
-    //if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
-    motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
-}
+	    float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
+	    if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
+		//if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
+		motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
+	}
 }
 
 /*
@@ -57,10 +57,10 @@ void runArm(){
  */
 void runClamp(){
     if(!taskRunning){
-	float ud7;
-    ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
-    if(ud7 != 0.0) motor[servoClamp] = ud7 * CLAMP_OPEN_DISTANCE;
-}
+		float ud7;
+	    ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
+	    if(ud7 != 0.0) motor[servoClamp] = ud7 * CLAMP_OPEN_DISTANCE;
+	}
 }
 
 void runHitch(){

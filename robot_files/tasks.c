@@ -1,6 +1,4 @@
 task task_run_drivemode(){
-
-
    while(true){
      		if(!taskRunning){
 	        //Call to the drive methods
