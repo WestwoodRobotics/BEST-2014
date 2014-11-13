@@ -1,3 +1,7 @@
+/*
+ * task_run_drivemode
+ * run the robot in drive mode
+ */
 task task_run_drivemode(){
    while(true){
      		if(!taskRunning){
@@ -17,12 +21,20 @@ task task_run_drivemode(){
     }
 }
 
+/*
+ * task_flag_mode_chicken
+ * run the robot in chicken handling mode
+ */
 task task_flag_mode_chicken(){
 		taskRunning = true;
 
 		taskRunning = false;
 }
 
+/*
+ * task_flag_mode_blade
+ * run the robot in blade pickup mode
+ */
 task task_flag_mode_blade(){
 		taskRunning = true;
 

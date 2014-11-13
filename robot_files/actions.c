@@ -63,12 +63,20 @@ void runClamp(){
 	}
 }
 
+/*
+ * runHitch
+ * control the hitch
+ */
 void runHitch(){
     float lr7;
     lr7 = vexRT[JOY_BTN_HITCH_UP] - vexRT[JOY_BTN_HITCH_DOWN];
     if(lr7 != 0.0) motor[servoHitch] = lr7 * 128;
 }
 
+/*
+ * cancelFlagTasks
+ * stop all flag tasks that are currently running
+ */
 void cancelFlagTasks(){
     stopTask(task_flag_mode_chicken);
     stopTask(task_flag_mode_blade);
@@ -95,6 +103,10 @@ void runModeTask(){
     }
 }
 
+/*
+ * isModeRunPressed
+ * start running the task that may be activated
+ */
 bool isModeRunPressed = false;
 void checkRunModeTask(){
     if(vexRT[JOY_BTN_MODE_RUN]){
@@ -116,10 +128,18 @@ void initFlags(){
     motor[servoFlagMode] = flagModeServo[currentFlagMode];
 }
 
+/*
+ * initClamp
+ * initialize the Clamp position
+ */
 void initClamp(){
     motor[servoClamp] = CLAMP_OPEN_DISTANCE;
 }
 
+/*
+ * initHitch
+ * initialize the Hitch position
+ */
 void initHitch(){
     motor[servoHitch] = -128;
 }
