@@ -1,5 +1,5 @@
-
 bool isDriveTogglePressed = false;
+
 /*
  * run drive switch
  * should we switch the drivemode?
@@ -38,15 +38,17 @@ void checkSwitchFlagMode(){
  * control the arms
  */
 void runArm(){
-    float lr8 = vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT];
-    if(SensorValue[leftArmSwitch] && lr8 > 0) lr8 = 0;
-    if(SensorValue[rightArmSwitch] && lr8 < 0) lr8 = 0;
-    motor[armLRMotor] = lr8 * BTN_MOTOR_SPEED;
-    
-    float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
-    if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
-    //if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
-    motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
+	if(!taskRunning){
+	    float lr8 = vexRT[JOY_BTN_ARM_LEFT] - vexRT[JOY_BTN_ARM_RIGHT];
+	    if(SensorValue[leftArmSwitch] && lr8 > 0) lr8 = 0;
+	    if(SensorValue[rightArmSwitch] && lr8 < 0) lr8 = 0;
+	    motor[armLRMotor] = lr8 * BTN_MOTOR_SPEED;
+
+	    float ud8 = vexRT[JOY_BTN_ARM_UP] - vexRT[JOY_BTN_ARM_DOWN];
+	    if(SensorValue[bottomHeightSwitch] && ud8 < 0) ud8 = 0;
+		//if(!SensorValue[topHeightSwitch && ud8 > 0) ud8 = 0;
+		motor[armUDMotor] = ud8 * BTN_MOTOR_SPEED;
+	}
 }
 
 /*
@@ -54,20 +56,32 @@ void runArm(){
  * control the claw
  */
 void runClamp(){
-    float ud7;
-    ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
-    if(ud7 != 0.0) motor[servoClamp] = ud7 * 110;
+    if(!taskRunning){
+		float ud7;
+	    ud7 = vexRT[JOY_BTN_CLAMP_OPEN] - vexRT[JOY_BTN_CLAMP_CLOSE];
+	    if(ud7 != 0.0) motor[servoClamp] = ud7 * CLAMP_OPEN_DISTANCE;
+	}
 }
 
+/*
+ * runHitch
+ * control the hitch
+ */
 void runHitch(){
     float lr7;
     lr7 = vexRT[JOY_BTN_HITCH_UP] - vexRT[JOY_BTN_HITCH_DOWN];
     if(lr7 != 0.0) motor[servoHitch] = lr7 * 128;
 }
 
+/*
+ * cancelFlagTasks
+ * stop all flag tasks that are currently running
+ */
 void cancelFlagTasks(){
     stopTask(task_flag_mode_chicken);
     stopTask(task_flag_mode_blade);
+
+    taskRunning = false;
 }
 
 /*
@@ -84,11 +98,15 @@ void runModeTask(){
         startTask(task_flag_mode_blade);
         break;
     default:
-        
+
         break;
     }
 }
 
+/*
+ * isModeRunPressed
+ * start running the task that may be activated
+ */
 bool isModeRunPressed = false;
 void checkRunModeTask(){
     if(vexRT[JOY_BTN_MODE_RUN]){
@@ -110,10 +128,39 @@ void initFlags(){
     motor[servoFlagMode] = flagModeServo[currentFlagMode];
 }
 
+/*
+ * initClamp
+ * initialize the Clamp position
+ */
 void initClamp(){
-    motor[servoClamp] = 110;
+    motor[servoClamp] = CLAMP_OPEN_DISTANCE;
 }
 
+/*
+ * initHitch
+ * initialize the Hitch position
+ */
 void initHitch(){
     motor[servoHitch] = -128;
+}
+
+/*
+ * letGo
+ * Automatically runs through the process of letting go of an object
+ * Assumes that the arm is center and the object is touching/right above the ground
+ */
+void letGo(){
+		motor[servoClamp] = CLAMP_OPEN_DISTANCE;
+
+		motor[armLRMotor] = -1 * BTN_MOTOR_SPEED;
+		wait1Msec(750);
+		motor[armLRMotor] = 0;
+
+		motor[armUDMotor] = BTN_MOTOR_SPEED;
+		wait1Msec(750);
+		motor[armUDMotor] = 0;
+
+		motor[armLRMotor] = BTN_MOTOR_SPEED;
+		wait1Msec(750);
+		motor[armLRMotor] = 0;
 }

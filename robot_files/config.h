@@ -7,6 +7,8 @@
 #define BTN_MOTOR_SPEED 127
 #define BTN_MOVE_SPEED 128
 
+#define CLAMP_OPEN_DISTANCE 110
+
 #define SLOW_SPEED_MULTIPLIER 0.65
 
 #define JOY_AXIS_MOTOR_LEFT Ch3
@@ -48,6 +50,7 @@ typedef enum TFlagMode {
 float flagModeServo[FLAG_MAX] = {0, 50, 100};
 float flagDriveServo[DRIVE_MAX] = {0, 50, 110};
 
+bool taskRunning = false;
 
 TFlagMode currentFlagMode = FLAG_CHICKEN;
 

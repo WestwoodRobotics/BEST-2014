@@ -37,11 +37,11 @@ task main(){
 
         //Call the Arm control method
         runArm();
-        //Call the Calw control method
+        //Call the Claw control method
         runClamp();
-
+		//Call the Hitch control method
         runHitch();
-
+		//Call the task handling method
         checkRunModeTask();
     }
 }
