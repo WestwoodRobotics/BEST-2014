@@ -1,7 +1,6 @@
-
 long timer = 0;
-int hallCount = 0;
-int hallAvg = 0;
+volatile int hallCount = 0;
+volatile double hallAvg = 0.0;
 int lastReadVal = 0;
 int hallVal = 0;
 
@@ -51,21 +50,22 @@ ISR(TIMER1_COMPA_vect) {
   timer += 1;
   if(timer >= 2000){
     timer = 0;
-    hallAvg = hallCount;
+    hallAvg = (hallCount / 36.0) * 2;
     hallCount = 0;
   }
 }
 
 void loop(){
   Serial.print(String(hallAvg) + "\n");
-  ledStates[0] = hallAvg > 25;
-  ledStates[1] = hallAvg > 50;
-  ledStates[2] = hallAvg > 75;
-  ledStates[3] = hallAvg > 100;
-  ledStates[4] = hallAvg > 120;
-  ledStates[5] = hallAvg > 135;
-  ledStates[6] = hallAvg > 150;
-  ledStates[7] = hallAvg > 170;
+  //These are RPS values, Revolutions per Second.
+  ledStates[0] = hallAvg > 1;
+  ledStates[1] = hallAvg > 5;
+  ledStates[2] = hallAvg > 10;
+  ledStates[3] = hallAvg > 20;
+  ledStates[4] = hallAvg > 25;
+  ledStates[5] = hallAvg > 30;
+  ledStates[6] = hallAvg > 40;
+  ledStates[7] = hallAvg > 50;
 
   for(i = 0; i < 8; i++){
     digitalWrite(ledPins[i], ledStates[i]);

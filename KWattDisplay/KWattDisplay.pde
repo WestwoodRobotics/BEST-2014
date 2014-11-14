@@ -1,29 +1,32 @@
 import processing.serial.*;
 String inString = "0.0";
+String tmpString;
 Serial myPort;  // The serial port
-Double rpm = 0.0D;
-Double watts = 0.0D;
-Double angVel = 0.0D;
+float rpm = 0.0;
+float rps = 0.0;
+float watts = 0.0;
+float angVel = 0.0;
 int textX = 20;
 
 void setup() {
   size(700,400);
   
   myPort = new Serial(this, "/dev/ttyUSB0", 9600);
+  myPort.bufferUntil('\n');
 }
 
 void serialEvent(Serial p){
-  inString = p.readStringUntil(10);
+  inString = trim(p.readString());
 }
 
-void draw() {
-  try{rpm = Double.parseDouble(inString);}
+void draw() {  
+  try{rps = float(inString);}
   catch(NullPointerException a){}
-  finally{rpm = 0.0D;}
-  rpm /= 36.0;
-  angVel = rpm * 4 * Math.PI;
+  finally{}
+  
+  angVel = rps * 2 * 3.14159;
 
-  rpm *= 120.0;
+  rpm = rps * 60;
   watts = angVel * 0.81;
   background(255);
   fill(0);
