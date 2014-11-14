@@ -13,28 +13,50 @@
  * included in all copies or substantial portions of the Software.
  */
 
+//Import the serial library
 import processing.serial.*;
+
+//Set a default string that will be used until the arduino sends up data
 String inString = "0.0";
-String tmpString;
-Serial myPort;  // The serial port
+
+//The serial port
+Serial myPort;
+
+//Revolutions per minute
 float rpm = 0.0;
+
+//Revolutions per second
 float rps = 0.0;
+
+//Wattage calculated
 float watts = 0.0;
+
+//Angular Velocity calculated
 float angVel = 0.0;
+
+//Text x position
 int textX = 20;
 
+//Setup the app
 void setup() {
+
+  //Set the size of the app
   size(700,400);
   
+  //Open the serial port
   myPort = new Serial(this, "/dev/ttyUSB0", 9600);
+
+  //Set the serial port to buffer each line to this character
   myPort.bufferUntil('\n');
 }
 
+//What to do when we get serial data
 void serialEvent(Serial p){
   //Whatever happened to readLine()????
   inString = trim(p.readString());
 }
 
+//The app's draw method
 void draw() {
 
 
