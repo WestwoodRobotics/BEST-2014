@@ -66,12 +66,12 @@ void loop(){
   Serial.print(String(hallAvg) + "\n");
   ledStates[0] = hallAvg > 25;
   ledStates[1] = hallAvg > 50;
-  ledStates[2] = hallAvg > 100;
-  ledStates[3] = hallAvg > 135;
-  ledStates[4] = hallAvg > 165;
-  ledStates[5] = hallAvg > 180;
-  ledStates[6] = hallAvg > 200;
-  ledStates[7] = hallAvg > 230;
+  ledStates[2] = hallAvg > 75;
+  ledStates[3] = hallAvg > 100;
+  ledStates[4] = hallAvg > 120;
+  ledStates[5] = hallAvg > 135;
+  ledStates[6] = hallAvg > 150;
+  ledStates[7] = hallAvg > 170;
 
   for(i = 0; i < 8; i++){
     digitalWrite(ledPins[i], ledStates[i]);
