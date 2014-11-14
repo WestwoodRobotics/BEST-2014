@@ -1,9 +1,9 @@
 
 long timer = 0;
 int hallCount = 0;
-float hallAvg = 0;
+int hallAvg = 0;
 int lastReadVal = 0;
-int reedVal = 0;
+int hallVal = 0;
 
 int i;
 
@@ -26,8 +26,8 @@ void setup(){
   TCCR1A = 0;// set entire TCCR1A register to 0
   TCCR1B = 0;// same for TCCR1B
   TCNT1  = 0;
-  // set timer count for 5khz increments
-  OCR1A = 399;// = (1/5000)/((1/(16x10^6))x8) - 1
+  // set timer count for 4khz increments
+  OCR1A = 499;// = (1/4000)/((1/(16x10^6))x8) - 1
   // turn on CTC mode
   TCCR1B |= (1 << WGM12);
   // Set CS11 bit for 8 prescaler
@@ -43,19 +43,13 @@ void setup(){
 
 
 ISR(TIMER1_COMPA_vect) {
-  reedVal = digitalRead(9);
-  if(reedVal){
-    if(lastReadVal == 0){
-      hallCount += 1;
-    }
-  }else{
-    if(lastReadVal == 1){
-      hallCount += 1;
-    }
+  hallVal = digitalRead(9);
+  if(hallVal == lastReadVal){
+    hallCount += 1;
+    lastReadVal = hallVal;
   }
-  lastReadVal = reedVal;
   timer += 1;
-  if(timer > 1000){
+  if(timer >= 2000){
     timer = 0;
     hallAvg = hallCount;
     hallCount = 0;
@@ -76,4 +70,5 @@ void loop(){
   for(i = 0; i < 8; i++){
     digitalWrite(ledPins[i], ledStates[i]);
   }
+  delay(500);
 }
