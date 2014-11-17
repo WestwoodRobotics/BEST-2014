@@ -66,7 +66,6 @@ void setup(){
 
   //Allow interrupts
   sei();
-  //END TIMER SETUP
 
   //Begin Serial communications.
   Serial.begin(9600);
@@ -103,21 +102,21 @@ void loop(){
   //These are RPS values, Revolutions per Second.
 
   //P1
-  ledStates[0] = hallAvg > 1;
+  ledStates[0] = hallAvg >= 2;
   //P2
-  ledStates[1] = hallAvg > 5;
+  ledStates[1] = hallAvg >= 4;
   //P3
-  ledStates[2] = hallAvg > 10;
+  ledStates[2] = hallAvg >= 5;
   //M1
-  ledStates[3] = hallAvg > 20;
+  ledStates[3] = hallAvg >= 6;
   //M3
-  ledStates[4] = hallAvg > 25;
+  ledStates[4] = hallAvg >= 8;
   //C1
-  ledStates[5] = hallAvg > 30;
+  ledStates[5] = hallAvg >= 10;
   //C2
-  ledStates[6] = hallAvg > 40;
+  ledStates[6] = hallAvg >= 12;
   //RP1
-  ledStates[7] = hallAvg > 50;
+  ledStates[7] = hallAvg >= 15;
 
   //Write the house light states to the relay.
   for(i = 0; i < 8; i++){
